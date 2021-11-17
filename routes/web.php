@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\CrudController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/student', [CrudController::class, 'index']);
+Route::post('/student', [CrudController::class, 'store']);
+Route::get('/student/create', [CrudController::class, 'create']);
+Route::delete('/student/{student}', [CrudController::class, 'destroy']);
+Route::get('/student/{student}', [CrudController::class, 'show']);
+Route::get('/student/{student}/edit', [CrudController::class, 'edit']);
+Route::put('/student/{student}', [CrudController::class, 'update']);
